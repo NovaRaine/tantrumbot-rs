@@ -1,0 +1,8 @@
+[package]
+name = "tantrumbot-rs"
+version = "0.1.0"
+authors = ["Nova Rain <no-reply@no-mail.com>"]
+edition = "2018"
+
+[dependencies.serenity]
+version = "0.5.11"
