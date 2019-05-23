@@ -1,3 +1,3 @@
-command!(quit(ctx, msg) {
+command!(quit(_ctx, _msg) {
     // quit
 });

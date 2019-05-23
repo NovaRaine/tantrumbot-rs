@@ -1,9 +1,9 @@
 use std::collections::HashSet;
+use std::env;
 use crate::commands;
 use serenity::{
     framework::StandardFramework,
-    prelude::*,
-    http,
+    http
 };
 
 pub fn get_framework() -> StandardFramework {
@@ -14,13 +14,19 @@ pub fn get_framework() -> StandardFramework {
 
             set
         },
-        Err(why) => panic!("Couldn't get application info: {:?}", why),
+        Err(why) => panic!("Couldn't get application info: {:?}", why)
     };
+
+    let prefix = env::var("TANTRUM-RS_PREFIX");
+    let prefix = prefix
+        .as_ref()
+        .map(String::as_str)
+        .unwrap_or("!");
 
     let f = StandardFramework::new()
         .configure(|c| c
             .owners(owners)
-            .prefix("!")
+            .prefix(&prefix)
             .on_mention(true)
             .allow_whitespace(true))
         .command("ping", |c| c.cmd(commands::meta::ping))
